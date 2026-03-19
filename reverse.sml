@@ -14,4 +14,4 @@ fun my_reverse input_list =
 		|   rev_helper (head::tail, reversed_list) = rev_helper (tail, head::reversed_list)
 	in
 		rev_helper (input_list, [])
-	end
+	end;
