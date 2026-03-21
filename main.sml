@@ -102,6 +102,11 @@ fun to_lowercase nil = nil
     Description: Compares two lists for equality by recursively checking if their heads match.
                  Returns true if both lists are empty, false if one is empty and the other isn't,
                  and recursively compares the tails if both lists have matching heads.
+
+    Base Case 1: if both lists are empty, return true
+    Base Case 2/3: if one list is empty and the other isn't, return false
+
+    Recursive Case: if both lists have matching heads, recursively compare their tails. Else, return false.
 *)
 fun compare_list (nil, nil) = true
  |  compare_list (_, nil) = false
