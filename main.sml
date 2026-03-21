@@ -87,11 +87,11 @@ fun removeNonAlphabetic input_list =
                     list. If it is not a capital letter, just attach it to the result of calling the
                     function on the tail of the inputted list.
 *)
-fun to_lowercase nil = nil
- |  to_lowercase (head::tail) =
+fun changeToLowercase nil = nil
+ |  changeToLowercase (head::tail) =
     if (head >= #"A" andalso head <= #"Z")
-    then chr( ord(head) + 32 ) :: to_lowercase tail
-    else head :: to_lowercase tail;
+    then chr( ord(head) + 32 ) :: changeToLowercase tail
+    else head :: changeToLowercase tail;
 
 
 
@@ -127,7 +127,7 @@ fun compare_list (nil, nil) = true
 
     Description: Takes a string input then calls the function explode on the word. Then it
                  calls the function removeNonAlphabetic on chars. Then it calls the
-                 function to_lowercase on letters. Then it creates a reverse of the
+                 function changeToLowercase on letters. Then it creates a reverse of the
                  inputted string by using the function my_reverse on lower. Then it
                  calls the function compare_list on lower and rev. It returns true
                  if it is a palindrome and false if it is not.
@@ -136,7 +136,7 @@ fun is_palindrome word =
 	let
 		val chars = explode word
 		val letters = removeNonAlphabetic chars
-		val lower = to_lowercase letters
+		val lower = changeToLowercase letters
 		val rev = my_reverse lower
 	in
 		compare_list (lower, rev)
