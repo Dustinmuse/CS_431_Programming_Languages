@@ -77,6 +77,15 @@ fun removeNonAlphabetic input_list =
                  to its ASCII value, converting it into a lowercase letter. If not, it is left
                  alone. Then, it appends it to the result of calling the function on the
                  inputted list's tail.
+
+    Base Case: if the inputted list is empty, return an empty list
+
+    Recursive Case: if the inputted list is not empty, check if the ASCII value of the inputted
+                    lists head falls between #"A" and #"Z" (inclusive), indicating it is a capital
+                    letter. If it is, convert it to lowercase by adding 32 to its ASCII value and
+                    then attach it to the result of calling the function on the tail of the inputted
+                    list. If it is not a capital letter, just attach it to the result of calling the
+                    function on the tail of the inputted list.
 *)
 fun to_lowercase nil = nil
  |  to_lowercase (head::tail) =
