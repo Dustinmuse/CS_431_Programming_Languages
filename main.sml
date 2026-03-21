@@ -99,14 +99,15 @@ fun changeToLowercase nil = nil
     head1/2 = head of each list
     tail1/2 = tail of each list
 
-    Description: Compares two lists for equality by recursively checking if their heads match.
-                 Returns true if both lists are empty, false if one is empty and the other isn't,
-                 and recursively compares the tails if both lists have matching heads.
+    Description: Compares two lists and returns true only when they are the same length
+                 and every element at each position is equal.
 
-    Base Case 1: if both lists are empty, return true
-    Base Case 2/3: if one list is empty and the other isn't, return false
+    Base Case 1: Both lists are empty, so they match exactly. Return true.
+    Base Case 2: The second list is empty, so the length of lists differ. Return false.
+    Base Case 3: The first list is empty, so the length of lists differ. Return false.
 
-    Recursive Case: if both lists have matching heads, recursively compare their tails. Else, return false.
+    Recursive Case: If head1 = head2, compare_list continues with (tail1, tail2).
+                    If head1 <> head2, return false.
 *)
 fun compare_list (nil, nil) = true
  |  compare_list (_, nil) = false
