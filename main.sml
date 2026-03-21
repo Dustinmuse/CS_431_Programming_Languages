@@ -1,7 +1,7 @@
 (*
     Name: Dustin Muse & J.D. Otis
     Date: 04/03/2026
-    Purpose:
+    Purpose: Checks if a given string is a palindrome by removing non-alphabetic characters, converting to lowercase, and comparing to a reversed version of itself.
 *)
 
 
