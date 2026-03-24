@@ -1,7 +1,7 @@
 (*
     Name: Dustin Muse & J.D. Otis
     Date: 04/03/2026
-    Purpose:
+    Purpose: Checks if a given string is a palindrome by removing non-alphabetic characters, converting to lowercase, and comparing to a reversed version of itself.
 *)
 
 
@@ -77,12 +77,21 @@ fun removeNonAlphabetic input_list =
                  to its ASCII value, converting it into a lowercase letter. If not, it is left
                  alone. Then, it appends it to the result of calling the function on the
                  inputted list's tail.
+
+    Base Case: if the inputted list is empty, return an empty list
+
+    Recursive Case: if the inputted list is not empty, check if the ASCII value of the inputted
+                    lists head falls between #"A" and #"Z" (inclusive), indicating it is a capital
+                    letter. If it is, convert it to lowercase by adding 32 to its ASCII value and
+                    then attach it to the result of calling the function on the tail of the inputted
+                    list. If it is not a capital letter, just attach it to the result of calling the
+                    function on the tail of the inputted list.
 *)
-fun to_lowercase nil = nil
- |  to_lowercase (head::tail) =
+fun changeToLowercase nil = nil
+ |  changeToLowercase (head::tail) =
     if (head >= #"A" andalso head <= #"Z")
-    then chr( ord(head) + 32 ) :: to_lowercase tail
-    else head :: to_lowercase tail;
+    then chr( ord(head) + 32 ) :: changeToLowercase tail
+    else head :: changeToLowercase tail;
 
 
 
@@ -90,9 +99,15 @@ fun to_lowercase nil = nil
     head1/2 = head of each list
     tail1/2 = tail of each list
 
-    Description: Compares two lists for equality by recursively checking if their heads match.
-                 Returns true if both lists are empty, false if one is empty and the other isn't,
-                 and recursively compares the tails if both lists have matching heads.
+    Description: Compares two lists and returns true only when they are the same length
+                 and every element at each position is equal.
+
+    Base Case 1: Both lists are empty, so they match exactly. Return true.
+    Base Case 2: The second list is empty, so the length of lists differ. Return false.
+    Base Case 3: The first list is empty, so the length of lists differ. Return false.
+
+    Recursive Case: If head1 = head2, compare_list continues with (tail1, tail2).
+                    If head1 <> head2, return false.
 *)
 fun compare_list (nil, nil) = true
  |  compare_list (_, nil) = false
@@ -113,7 +128,7 @@ fun compare_list (nil, nil) = true
 
     Description: Takes a string input then calls the function explode on the word. Then it
                  calls the function removeNonAlphabetic on chars. Then it calls the
-                 function to_lowercase on letters. Then it creates a reverse of the
+                 function changeToLowercase on letters. Then it creates a reverse of the
                  inputted string by using the function my_reverse on lower. Then it
                  calls the function compare_list on lower and rev. It returns true
                  if it is a palindrome and false if it is not.
@@ -122,7 +137,7 @@ fun is_palindrome word =
 	let
 		val chars = explode word
 		val letters = removeNonAlphabetic chars
-		val lower = to_lowercase letters
+		val lower = changeToLowercase letters
 		val rev = my_reverse lower
 	in
 		compare_list (lower, rev)
