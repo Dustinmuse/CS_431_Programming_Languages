@@ -106,9 +106,11 @@ fun changeToLowercase nil = nil
     Base Case 2: The second list is empty, so the length of lists differ. Return false.
     Base Case 3: The first list is empty, so the length of lists differ. Return false.
 
-    Recursive Case: If head1 = head2, compare_list continues with (tail1, tail2).
-                    If head1 <> head2, return false.
-*)
+    Recursive Case: Take the head of the 1st inputted list and the head of the 2nd inputted list
+                    (which is the reversed version of the 1st inputted list) and extract the head of both lists
+                    and compare them. If they are equal, call the function compare_list on the tail of both lists.
+                    If they are not equal, return false.
+*) 
 fun compare_list (nil, nil) = true
  |  compare_list (_, nil) = false
  |  compare_list (nil, _) = false
